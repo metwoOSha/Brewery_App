@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Ubuntu } from 'next/font/google';
 import './globals.css';
+import Header from '@/components/Header/Header';
 
 const geistUbuntu = Ubuntu({
     variable: '--font-ubuntu',
@@ -20,7 +21,12 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <body className={`${geistUbuntu.variable}`}>{children}</body>
+            <body className={`${geistUbuntu.variable}`}>
+                <header>
+                    <Header />
+                </header>
+                <main>{children}</main>
+            </body>
         </html>
     );
 }

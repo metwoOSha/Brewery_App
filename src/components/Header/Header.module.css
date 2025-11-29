@@ -1,0 +1,29 @@
+.header {
+    position: fixed;
+    z-index: 9999;
+    width: 100%;
+    background-color: var(--background);
+    font-size: 20px;
+    font-weight: 700;
+    box-shadow: var(--box-shadow);
+}
+
+.wrapper {
+    padding: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    h1 {
+        text-transform: uppercase;
+    }
+}
+
+.pos {
+    position: relative;
+}
+
+.img {
+    position: absolute;
+    right: -80px;
+    top: 0;
+}
