@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import cls from './Card.module.css';
+import { CardProps } from './Card.interface';
 
 // export default function Card() {
 //     const breweries = useBreweriesStore((state) => state.breweries);
@@ -21,13 +22,15 @@ import cls from './Card.module.css';
 //     );
 // }
 
-export default function Card({ id, name }) {
+export default function Card({ id, name, country, city }: CardProps) {
     return (
         <div className={cls.card}>
-            <p className={cls.name}>10 Barrel Brewing Co - Bend Pub</p>
-            <p className={cls.city}>United States, Bend</p>
+            <p className={cls.name}>{name}</p>
+            <p className={cls.city}>
+                {country}, {city}
+            </p>
             <Image src="/beerCard.png" alt="beer-card" width={200} height={200} />
-            <Link href={`/brewery/${id}`}>
+            <Link href={`/brewery/${id}`} className={cls.link}>
                 <span className={cls.more}>More details ➜</span>
             </Link>
         </div>
