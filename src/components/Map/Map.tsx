@@ -6,10 +6,12 @@ import 'leaflet-defaulticon-compatibility';
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
 import { MapProps } from './Map.interface';
 
-function Map({ latitude, longitude, zoom = 13 }: MapProps) {
+import cls from './Map.module.css';
+
+export default function Map({ latitude, longitude, zoom = 13 }: MapProps) {
     const position: [number, number] = [latitude, longitude];
     return (
-        <MapContainer center={position} zoom={zoom} style={{ height: '100vh' }}>
+        <MapContainer center={position} zoom={zoom} className={cls.map}>
             <TileLayer
                 attribution="&copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors"
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -20,5 +22,3 @@ function Map({ latitude, longitude, zoom = 13 }: MapProps) {
         </MapContainer>
     );
 }
-
-export default Map;

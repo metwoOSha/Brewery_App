@@ -2,6 +2,7 @@
 
 import Map from '@/components/Map';
 import useBreweriesStore from '@/store/breweryStore';
+import Link from 'next/link';
 import { useEffect } from 'react';
 
 export default function BreweryPage() {
@@ -10,15 +11,15 @@ export default function BreweryPage() {
 
     useEffect(() => {
         fetchDataBreweries();
-    }, []);
-
-    console.log(breweries);
+    }, [fetchDataBreweries]);
 
     return (
         <>
             <Map latitude={35.25738891} longitude={-97.46818222} />
             {breweries.map((item) => (
-                <div key={item.id}>{item.name}</div>
+                <Link key={item.id} href={`/brewery/${item.id}`}>
+                    <div>{item.name}</div>
+                </Link>
             ))}
         </>
     );
