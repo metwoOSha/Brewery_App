@@ -54,12 +54,16 @@ export default async function SelectedBreweryPage({ params }: { params: Promise<
                         </div>
                     )}
                 </div>
-                <div className={cls.map}>
-                    <p>Our location:</p>
-                    <div className={cls.mapBlock}>
-                        <Map latitude={brewery.latitude} longitude={brewery.longitude} />
+                {brewery.latitude && brewery.longitude ? (
+                    <div className={cls.map}>
+                        <p>Our location:</p>
+                        <div className={cls.mapBlock}>
+                            <Map latitude={brewery.latitude} longitude={brewery.longitude} />
+                        </div>
                     </div>
-                </div>
+                ) : (
+                    <div>No data location</div>
+                )}
             </div>
         </div>
     );

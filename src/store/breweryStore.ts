@@ -3,28 +3,39 @@ import { devtools } from 'zustand/middleware';
 import { Brewery, BreweryState } from './breweryStore.interface';
 
 export const useBreweriesStore = create<BreweryState>()(
-    devtools((set) => ({
+    devtools((set, get) => ({
         breweries: [],
+        selected: [],
         page: 1,
         loading: false,
+        errorMsg: '',
         fetchDataBreweries: async () => {
             set({ loading: true });
+            const { page } = get();
+
             try {
                 const res = await fetch(
-                    'https://api.openbrewerydb.org/v1/breweries?per_page=15&page=1'
+                    `https://api.openbrewerydb.org/v1/breweries?per_page=15&page=${page}`
                 );
+
+                if (!res.ok) {
+                    throw new Error('Error fetch data');
+                }
                 const data: Brewery[] = await res.json();
 
                 set((state) => ({
                     breweries: [...state.breweries, ...data],
                     page: state.page + 1,
-                    loading: false,
                 }));
             } catch (err) {
+                set({ errorMsg: `${err}` });
+            } finally {
                 set({ loading: false });
-                console.log(err);
             }
         },
     }))
 );
+
+useBreweriesStore.getState().fetchDataBreweries();
+
 export default useBreweriesStore;
