@@ -6,6 +6,7 @@ export const useBreweriesStore = create<BreweryState>()(
     devtools((set, get) => ({
         breweries: [],
         selected: [],
+        visible: [],
         page: 1,
         loading: false,
         errorMsg: '',
@@ -32,6 +33,22 @@ export const useBreweriesStore = create<BreweryState>()(
             } finally {
                 set({ loading: false });
             }
+        },
+        toggleSelect: (id) => {
+            const selected = get().selected;
+            if (selected.includes(id)) {
+                set({ selected: selected.filter((item) => item !== id) });
+            } else {
+                set({ selected: [...selected, id] });
+            }
+        },
+        deleteSelectItems: () => {
+            const breweries = get().breweries;
+            const selected = get().selected;
+            set({
+                breweries: breweries.filter((item) => !selected.includes(item.id)),
+            });
+            set({ selected: [] });
         },
     }))
 );

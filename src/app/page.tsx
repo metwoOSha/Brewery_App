@@ -8,6 +8,7 @@ import cls from './page.module.css';
 
 export default function BreweryPage() {
     const breweries = useBreweriesStore((state) => state.breweries);
+    const deleteSelectItems = useBreweriesStore((state) => state.deleteSelectItems);
 
     return (
         <>
@@ -18,15 +19,16 @@ export default function BreweryPage() {
                             {/* <Link key={item.id} href={`/brewery/${item.id}`}>
                         <div>{item.name}</div>
                     </Link> */}
-                                <Card
-                                    id={item.id}
-                                    name={item.name}
-                                    country={item.country}
-                                    city={item.city}
-                                />
+                            <Card
+                                id={item.id}
+                                name={item.name}
+                                country={item.country}
+                                city={item.city}
+                            />
                         </div>
                     ))}
                 </div>
+                <button onClick={deleteSelectItems}>Delete</button>
             </div>
         </>
     );

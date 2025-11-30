@@ -1,28 +1,22 @@
-// import useBreweriesStore from '@/store/breweryStore';
+'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
 import cls from './Card.module.css';
 import { CardProps } from './Card.interface';
-
-// export default function Card() {
-//     const breweries = useBreweriesStore((state) => state.breweries);
-//     const items = breweries.slice(0, 5);
-
-//     return (
-//         <div className={cls.grid}>
-//             {items.map((item, index: number) => (
-//                 <div key={item.id} className={`card card-${index + 1}`}>
-//                     <h3>{item.name}</h3>
-//                     <p>
-//                         {item.city}, {item.state_province}
-//                     </p>
-//                 </div>
-//             ))}
-//         </div>
-//     );
-// }
+import { useState } from 'react';
+import useBreweriesStore from '@/store/breweryStore';
 
 export default function Card({ id, name, country, city }: CardProps) {
+    const [isChecked, setIsChecked] = useState<boolean>(false);
+
+    const toggleSelect = useBreweriesStore((state) => state.toggleSelect);
+
+    function handleCheckboxChange(e: React.ChangeEvent<HTMLInputElement>) {
+        setIsChecked(e.target.checked);
+        toggleSelect(id);
+    }
+
     return (
         <div className={cls.card}>
             <p className={cls.name}>{name}</p>
@@ -33,6 +27,12 @@ export default function Card({ id, name, country, city }: CardProps) {
             <Link href={`/brewery/${id}`} className={cls.link}>
                 <span className={cls.more}>More details ➜</span>
             </Link>
+            <input
+                type="checkbox"
+                className={cls.input}
+                checked={isChecked}
+                onChange={handleCheckboxChange}
+            />
         </div>
     );
 }

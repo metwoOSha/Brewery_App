@@ -1,5 +1,5 @@
 export interface Brewery {
-    id: string | null;
+    id: string;
     name: string | null;
     brewery_type: string | null;
     address_1: string | null;
@@ -18,9 +18,12 @@ export interface Brewery {
 
 export interface BreweryState {
     breweries: Brewery[];
-    selected: number[];
+    selected: string[];
+    visible: Brewery[];
     page: number;
     loading: boolean;
     errorMsg: string;
     fetchDataBreweries: () => Promise<void>;
+    toggleSelect: (id: string) => void;
+    deleteSelectItems: () => void;
 }

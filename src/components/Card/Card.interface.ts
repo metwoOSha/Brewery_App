@@ -1,5 +1,5 @@
 export interface CardProps {
-    id: string | null;
+    id: string;
     name: string | null;
     country: string | null;
     city: string | null;
