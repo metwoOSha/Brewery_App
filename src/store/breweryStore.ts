@@ -10,6 +10,7 @@ export const useBreweriesStore = create<BreweryState>()(
         page: 1,
         loading: false,
         errorMsg: '',
+        animation: false,
         fetchDataBreweries: async () => {
             set({ loading: true });
             const { page, bufferBreweries } = get();
@@ -43,10 +44,13 @@ export const useBreweriesStore = create<BreweryState>()(
             }
         },
         deleteSelected: async () => {
+            set({ animation: true });
+            await new Promise((resolve) => setTimeout(resolve, 1000));
             const { visibleBreweries, selected } = get();
             const filtered = visibleBreweries.filter((item) => !selected.includes(item.id));
             set({ visibleBreweries: filtered, selected: [] });
             await get().refillVisible();
+            set({ animation: false });
         },
         refillVisible: async () => {
             const { visibleBreweries, bufferBreweries } = get();

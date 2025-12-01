@@ -3,15 +3,20 @@
     top: 100px;
     right: 20px;
     z-index: 9999;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
     border-radius: 20px;
     background: #fff;
     border: 1px solid #23262f;
     box-shadow: var(--box-shadow);
+    overflow: hidden;
+}
+
+.wrapper {
+    position: relative;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .btn {
@@ -23,4 +28,30 @@
 
 .btn:hover svg {
     fill: rgb(255, 39, 39);
+}
+
+.animation {
+    position: relative;
+    z-index: 999;
+}
+
+.line {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    background-color: rgb(1, 255, 35);
+    animation: shrinkLine 1s linear forwards;
+}
+
+@keyframes shrinkLine {
+    from {
+        width: 100%;
+        right: 0;
+    }
+    to {
+        width: 0%;
+        right: 100%;
+    }
 }

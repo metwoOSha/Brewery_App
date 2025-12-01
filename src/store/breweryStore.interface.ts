@@ -22,6 +22,7 @@ export interface BreweryState {
     page: number;
     loading: boolean;
     errorMsg: string;
+    animation: boolean;
     fetchDataBreweries: () => Promise<void>;
     toggleSelect: (id: string) => void;
     clearSelect: () => void;
