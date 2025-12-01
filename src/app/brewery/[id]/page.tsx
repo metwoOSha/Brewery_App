@@ -61,7 +61,7 @@ export default async function SelectedBreweryPage({ params }: { params: Promise<
                     </div>
                 </div>
             ) : (
-                <div>No data location</div>
+                <div className={cls.noData}>No data location</div>
             )}
         </div>
     );
