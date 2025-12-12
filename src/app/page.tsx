@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect } from 'react';
-import cn from 'classnames';
 import Card from '@/components/Card/Card';
 import DeleteButton from '@/components/DeleteButton/DeleteButton';
 import useBreweriesStore from '@/store/breweryStore';
@@ -37,12 +36,10 @@ export default function BreweryPage() {
     return (
         <div className={cls.list}>
             <div className={cls.grid}>
-                {visibleBreweries.map((item, index) => (
+                {visibleBreweries.map((item) => (
                     <div
                         key={item.id}
-                        className={cn(cls.card, {
-                            [cls.fullWidth]: index === 4 || index === 9 || index === 14,
-                        })}
+                        className={cls.card}
                         onClick={(e) => {
                             if (e.button === 0) {
                                 router.push(`/brewery/${item.id}`);
